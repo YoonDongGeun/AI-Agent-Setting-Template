@@ -1,135 +1,46 @@
-# Turborepo starter
 
-This Turborepo starter is maintained by the Turborepo core team.
+# AI-Agent-Setting-Template
 
-## Using this example
+AI-Agent-Setting-Template는 TDD와 Tidy First 원칙을 실천하는 AI 지침서 템플릿입니다. 다양한 프론트엔드 앱과 UI 컴포넌트, 개발 가이드, 아키텍처 문서를 포함하며, AI 기반 개발 자동화 실험을 통해 생산성을 올리는 것이 목표입니다.
 
-Run the following command:
+## 주요 폴더 구조
 
-```sh
-npx create-turbo@latest
+- `apps/` : 실제 서비스 앱(`web`, `docs` 등)
+- `packages/ui/` : 재사용 가능한 React UI 컴포넌트
+- `packages/eslint-config/` : 조직 공통 ESLint 설정
+- `packages/typescript-config/` : 조직 공통 TypeScript 설정
+
+## 개발 원칙
+
+- 모든 기능은 테스트 주도 개발(TDD)로 구현
+- 구조적 변경과 행위적 변경을 분리(Tidy First)
+- 작은 단위로 자주 커밋, 커밋 메시지에 변경 유형 명확히 표기
+
+## 실행 방법
+
+```bash
+# 의존성 설치
+pnpm install
+
+# 전체 빌드
+pnpm build
+
+# 앱 개발 서버 실행 (예: web)
+pnpm --filter web dev
 ```
 
-## What's inside?
+## 문서
 
-This Turborepo includes the following packages/apps:
+- `AGENTS.md` : TDD/Tidy First 개발 가이드
+- `ARCHITECTURE.md` : 시스템 아키텍처 개요
+- 각 패키지/컴포넌트별 README 참고
 
-### Apps and Packages
+## 기여 가이드
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- plan.md의 워크플로우를 따라 기능을 추가/수정하세요.
+- 새로운 기능은 반드시 실패하는 테스트부터 작성하세요.
+- 구조적 변경과 행위적 변경을 분리하여 커밋하세요.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+---
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+본 프로젝트는 Kent Beck의 TDD와 Tidy First 철학을 실제 코드와 협업에 적용하는 실험적 레퍼런스입니다.
